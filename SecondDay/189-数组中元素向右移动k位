@@ -1,0 +1,47 @@
+class Solution {
+    public void rotate(int[] nums, int k) {
+        if(nums == null || nums.length == 0){
+            return;
+        }
+        if(k == 0){
+            return;
+        }
+        k = k % nums.length;
+
+        //数组元素执行的次数，最后等于数组的长度
+        int sum = 0;
+
+        //循环赋值，直接找到当前位置的下一个位置，然后赋值
+        for(int i = 0; sum < nums.length; i++){
+            int pre = nums[i];//当前元素的值
+            int current = i;//当前元素的下标
+            do{
+                //下一个元素的下标
+                int next = (current + k)%nums.length;
+                int temp = nums[next];
+                nums[next] = pre;//把当前的元素赋值给下一个元素
+                pre = temp;//当前元素->下一个元素
+                current = next;//当前下标->下一个元素下标
+                sum++;
+            }while(i != current);//如果没有重新回到开始的下标，则继续
+        }
+    }
+    /*
+        //暴力解法
+        public void rotate(int[] nums, int k) {
+        if(nums == null || nums.length == 0){
+            return;
+        }
+        if(k == 0){
+            return;
+        }
+        for(int i = 0;i < k; i++){
+            int temp = nums[nums.length - 1];
+            for(int j = nums.length - 1;j > 0; j--){
+                nums[j] = nums[j-1];
+            }
+            nums[0] = temp;
+        }
+    }
+    */
+}

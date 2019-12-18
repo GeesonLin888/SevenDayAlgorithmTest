@@ -1,0 +1,16 @@
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        if (nums == null || nums.length == 0) {
+            return null;
+        }
+        Map<Integer, Integer> map = new HashMap<>();//利用HashMap把nums[]的值和对应的index存储起来
+        for (int i = 0; i < nums.length; i++) {
+            int temp = target - nums[i];
+            if (map.containsKey(temp)) {
+                return new int[] {map.get(temp), i};
+            }
+            map.put(nums[i] , i);
+        }
+        return null;
+    }
+}
